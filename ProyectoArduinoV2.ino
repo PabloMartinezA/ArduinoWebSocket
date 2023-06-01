@@ -23,6 +23,12 @@ AsyncWebSocket webSocket("/ws");
 static int sensorVal = 0;
 const int ANALOG_READ_PIN = A0;  // or A0
 
+//Valores del LED
+int pinLED = 4;
+int valor;
+int maximo;
+int minimo =100;
+
 void notFound(AsyncWebServerRequest *request) {
   Serial.println("Page not found");
   request->send(404, "text/plain", "Not found");
@@ -47,6 +53,9 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
   } else if (type == WS_EVT_DATA) {
     // do nothing as client is not sending message to server
     os_printf("ws[%s][%u] data received\n", server->url(), client->id());
+    String receivedData = String((char *)data);
+    int thresholdValue = receivedData.toInt(); // Convert the received data to an integer
+    maximo = thresholdValue; // Actualizar la variable "maximo" con el nuevo valor del umbral
   }
 }
 
@@ -71,6 +80,7 @@ void readLDRValue() {
  
 void setup() {
   Serial.begin(115200);
+  pinMode(pinLED, OUTPUT);
   
   if(!SPIFFS.begin()){
     Serial.println("An Error has occurred while mounting SPIFFS");
@@ -137,5 +147,12 @@ void setup() {
 void loop() {
   // Read the LDR values continuously
   readLDRValue();
-  delay(8000);
+  valor = analogRead(ANALOG_READ_PIN);
+  Serial.println(valor);
+  if (valor >= maximo) {
+    digitalWrite(pinLED, HIGH);  // Encender el LED
+  } else {
+    digitalWrite(pinLED, LOW);   // Apagar el LED
+  }
+  delay(100);
 }

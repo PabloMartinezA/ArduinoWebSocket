@@ -1,5 +1,4 @@
 .hero {
-    background: #eee;
     padding: 20px;
     border-radius: 10px;
     margin-top: 1em;
@@ -10,8 +9,94 @@
     margin-bottom: 0.3em;
     text-align: center;
   }
+
+  body {
+    font-family: "Raleway", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5 {
+    margin: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
   
   .chart-container {
     max-width: 800px;
     margin: 0 auto;
   }
+
+  .light-bg {
+    background-color: white;
+    color: black; /* Color del texto en fondo claro */
+  }
+  
+  /* Estilos para el fondo oscuro */
+  .dark-bg {
+    background-color: #333; /* Cambia el color a un tono de gris */
+    color: white; /* Color del texto en fondo oscuro */
+  }
+
+  #sensorValueLabel,
+  #ledStateLabel {
+    font-size: 20px; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+
+  body {
+    transition: background-color 0.5s ease; /* Transición suave de 0.5 segundos */
+  }
+
+  #notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 9999;
+  }
+  
+  #notification.show {
+    opacity: 1;
+  }
+  
+  #notification.success {
+    background-color: #4caf50;
+  }
+  
+  #notification.error {
+    background-color: #f44336;
+  }
+
+  .centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .centered-elements {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  label {
+    margin-right: 5px;
+  }
+
+  input[type="range"] {
+    width: 200px;
+  }
+  
+  

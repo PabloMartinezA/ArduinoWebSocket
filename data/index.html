@@ -6,29 +6,54 @@
     <title>Plot Real-time Chart display of Sensor Readings - ESP8266/ESP32</title>
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="entireframework.min.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+    </head>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
       integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="index.js"></script>
   </head>
-  <body>
+  <body class="light-bg">
     <nav class="nav" tabindex="-1" onclick="this.focus()">
+      <div id="notification"></div>
       <div class="container">
-        <a class="pagename current" href="#">Lorem Ipsum</a>
-        <a href="#">Lorem Ipsum</a>
       </div>
     </nav>
     <button class="btn-close btn btn-sm">×</button>
     <div class="container">
       <div class="hero">
-        <h1>Graficacion en tiempo real del sensor de Luz</h1>
         <div class="chart-container">
           <canvas id="myChart" width="1000" height="600"></canvas>
         </div>
-      </div>
+        <label id="sensorValueLabel"></label><br><br>
+        <div class="centered-elements">
+          <label for="threshold">Umbral de luz:</label>
+          <input type="range" id="threshold" min="0" max="1024" step="1">
+          <span id="thresholdLabel"></span><br><br>
+        </div>
+        <div class="centered-elements">
+          <label id="ledStateLabel"></label><br><br><br>
+        </div>
+        <div style="overflow-x:auto;">
+          <table id="data-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Umbral</th>
+                <th>Valor del Sensor</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+          </table>
     </div>
   </body>
 </html>
